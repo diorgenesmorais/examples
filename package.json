@@ -1,0 +1,8 @@
+{
+  "name": "examples",
+  "version": "1.0.0",
+  "description": "examples of code",
+  "main": "index.js",
+  "author": "Diorgenes Morais <diorgenesmorais@gmail.com>",
+  "license": "MIT"
+}
