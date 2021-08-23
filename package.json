@@ -4,5 +4,15 @@
   "description": "examples of code",
   "main": "index.js",
   "author": "Diorgenes Morais <diorgenesmorais@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "babel-jest": "^27.0.6",
+    "jest": "^27.0.6",
+    "standard": "^16.0.3"
+  }
 }
