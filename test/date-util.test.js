@@ -2,7 +2,8 @@ import {
     calculateDayToAdd,
     nextBusinessDay,
     formatTimeUnit,
-    generateDateWithBusinessDays
+    generateDateWithBusinessDays,
+    formatDate
 } from '../src/date-util.js'
 
 describe('Calcular dias para adicionar', () => {
@@ -79,15 +80,28 @@ describe('Formatar uma unidade compondo dois caracteres', () => {
 
 describe('Gerar uma data acrescida de dias uteis', () => {
     test('Deve obter a data acrescida de 3 dias uteis', () => {
-        const expected = '01/09/2021'
-        expect(generateDateWithBusinessDays(3)).toBe(expected)
+        const expected = formatDate(new Date(2021, 8, 1))
+        const currentDate = new Date(2021, 7, 28)
+        const businessDay = 3
+        expect(generateDateWithBusinessDays(currentDate, businessDay)).toBe(expected)
     })
     test('Deve obter a data acrescida de 7 dias uteis', () => {
-        const expected = '07/09/2021'
-        expect(generateDateWithBusinessDays(7)).toBe(expected)
+        const expected = formatDate(new Date(2021, 8, 7))
+        const currentDate = new Date(2021, 7, 28)
+        const businessDay = 7
+        expect(generateDateWithBusinessDays(currentDate, businessDay)).toBe(expected)
     })
     test('Deve obter a data acrescida de 14 dias uteis', () => {
-        const expected = '16/09/2021'
-        expect(generateDateWithBusinessDays(14)).toBe(expected)
+        const expected = formatDate(new Date(2021, 8, 16))
+        const currentDate = new Date(2021, 7, 27)
+        const businessDay = 14
+        expect(generateDateWithBusinessDays(currentDate, businessDay)).toBe(expected)
+    })
+})
+
+describe('Formatar uma data', () => {
+    test('Deve retorna neste formato dd/MM/yyyy', () => {
+        const currentDate = new Date(2021, 7, 28)
+        expect(formatDate(currentDate)).toBe('28/08/2021')
     })
 })
