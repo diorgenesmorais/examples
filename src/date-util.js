@@ -31,7 +31,15 @@
     }
 }
 
+/**
+ * Formatar o número sempre em dois algarismo: '02', '07' ou '10'...
+ * @param {number} unit 
+ * @returns a unidade como string
+ */
+ const formatTimeUnit = unit => unit < 10 ? `0${unit}` : `${unit}`
+
 export {
     calculateDayToAdd,
-    nextBusinessDay
+    nextBusinessDay,
+    formatTimeUnit
 }

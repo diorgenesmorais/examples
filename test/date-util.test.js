@@ -1,4 +1,4 @@
-import { calculateDayToAdd, nextBusinessDay } from '../src/date-util.js'
+import { calculateDayToAdd, nextBusinessDay, formatTimeUnit } from '../src/date-util.js'
 
 describe('Calcular dias para adicionar', () => {
     test('Deve acrescentar 3 dias uteis sendo hoje domingo', () => {
@@ -54,5 +54,20 @@ describe('Calcular quantos dias a incrementar com base no dia da semana', () =>{
         daysOfWeek.forEach(day => {
             expect(nextBusinessDay(day)).toBe(expected)
         })
+    })
+})
+
+describe('Formatar uma unidade compondo dois caracteres', () => {
+    test('Informando um valor abaixo de 10, deve incrementar o zero na frente', () => {
+        const values = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+        values.forEach(unit => {
+            expect(formatTimeUnit(unit)).toBe(`0${unit}`)
+        })
+    })
+    test('Deve manter o formato quando for um valor decimal', () => {
+        expect(formatTimeUnit(10)).toBe('10')
+    })
+    test('Deve retornar uma string', () => {
+        expect(typeof formatTimeUnit(10)).toBe('string')
     })
 })
