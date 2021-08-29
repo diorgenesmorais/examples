@@ -1,4 +1,9 @@
-import { calculateDayToAdd, nextBusinessDay, formatTimeUnit } from '../src/date-util.js'
+import {
+    calculateDayToAdd,
+    nextBusinessDay,
+    formatTimeUnit,
+    generateDateWithBusinessDays
+} from '../src/date-util.js'
 
 describe('Calcular dias para adicionar', () => {
     test('Deve acrescentar 3 dias uteis sendo hoje domingo', () => {
@@ -69,5 +74,20 @@ describe('Formatar uma unidade compondo dois caracteres', () => {
     })
     test('Deve retornar uma string', () => {
         expect(typeof formatTimeUnit(10)).toBe('string')
+    })
+})
+
+describe('Gerar uma data acrescida de dias uteis', () => {
+    test('Deve obter a data acrescida de 3 dias uteis', () => {
+        const expected = '01/09/2021'
+        expect(generateDateWithBusinessDays(3)).toBe(expected)
+    })
+    test('Deve obter a data acrescida de 7 dias uteis', () => {
+        const expected = '07/09/2021'
+        expect(generateDateWithBusinessDays(7)).toBe(expected)
+    })
+    test('Deve obter a data acrescida de 14 dias uteis', () => {
+        const expected = '16/09/2021'
+        expect(generateDateWithBusinessDays(14)).toBe(expected)
     })
 })

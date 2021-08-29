@@ -38,8 +38,34 @@
  */
  const formatTimeUnit = unit => unit < 10 ? `0${unit}` : `${unit}`
 
+ /**
+ * Gerar uma data com mais 'x' dias uteis
+ * @param {number} amount dias uteis a incrementar
+ * @returns uma data formatada dd/MM/yyyy
+ */
+const generateDateWithBusinessDays = amount => {
+    const currentDate = new Date()
+
+    const dayOfWeek = currentDate.getDay()
+    // current date data
+    const dayOfMonth = currentDate.getDate()
+    const mount = currentDate.getMonth()
+    const year = currentDate.getFullYear()
+
+    const businessDay = dayOfMonth + nextBusinessDay(dayOfWeek)
+    const nextDate = new Date(year, mount, businessDay)
+
+    const nextDayOfMonth = nextDate.getDate()
+    const howManyDaysShouldIncrement = calculateDayToAdd(nextDate.getDay(), amount)
+
+    const deadline = new Date(year, mount, nextDayOfMonth + howManyDaysShouldIncrement)
+
+    return `${formatTimeUnit(deadline.getDate())}/${formatTimeUnit(deadline.getMonth() + 1)}/${deadline.getFullYear()}`
+}
+
 export {
     calculateDayToAdd,
     nextBusinessDay,
-    formatTimeUnit
+    formatTimeUnit,
+    generateDateWithBusinessDays
 }
