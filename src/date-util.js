@@ -1,23 +1,23 @@
 /**
  * Calcular dias para adicionar
- * @param {number} dayOfWeek
+ * @param {number} weekDay zero base (0 = domingo)
  * @param {number} days quantos dias a incrementar?
  * @returns quantos deve ser incrementado
  */
- const calculateDayToAdd = (dayOfWeek, days) => {
+ const calculateDayToAdd = (weekDay, days) => {
     for(let x = 1; x <= days; x++) {
         (x % 7 == 0) && (days += 2)
     }
-    return dayOfWeek == 0 ? days : (days - 1)
+    return weekDay == 0 ? days : (days - 1)
 }
 
 /**
  * Calcular quantos dias a incrementar
- * @param {number} dayOfWeek (0 = domingo)
+ * @param {number} weekDay zero base (0 = domingo)
  * @returns quantos dias a incrementar
  */
- const nextBusinessDay = dayOfWeek => {
-    switch(dayOfWeek) {
+ const nextBusinessDay = weekDay => {
+    switch(weekDay) {
         case 0:
         case 1:
         case 2:
@@ -54,13 +54,13 @@ const formatDate = date => {
  * @returns uma data formatada dd/MM/yyyy
  */
 const generateDateWithBusinessDays = (date, amount) => {
-    const dayOfWeek = date.getDay()
+    const weekDay = date.getDay()
     // current date data
-    const dayOfMonth = date.getDate()
+    const monthDay = date.getDate()
     const mount = date.getMonth()
     const year = date.getFullYear()
 
-    const businessDay = dayOfMonth + nextBusinessDay(dayOfWeek)
+    const businessDay = monthDay + nextBusinessDay(weekDay)
     const nextDate = new Date(year, mount, businessDay)
 
     const nextDayOfMonth = nextDate.getDate()

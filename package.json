@@ -6,7 +6,7 @@
   "author": "Diorgenes Morais <diorgenesmorais@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",
