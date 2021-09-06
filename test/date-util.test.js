@@ -97,6 +97,14 @@ describe('Gerar uma data acrescida de dias uteis', () => {
         const businessDay = 14
         expect(generateDateWithBusinessDays(currentDate, businessDay)).toBe(expected)
     })
+    test('Sendo sábado deve obter a data acrescida de 3 dias uteis', () => {
+        // 08/09/2021 - quarta feira
+        const expected = formatDate(new Date(2021, 8, 8))
+        // 04/09/2021 - no sábado
+        const currentDate = new Date(2021, 8, 4)
+        const businessDay = 3
+        expect(generateDateWithBusinessDays(currentDate, businessDay)).toBe(expected)
+    })
 })
 
 describe('Formatar uma data', () => {
