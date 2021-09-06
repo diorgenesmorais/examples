@@ -33,7 +33,7 @@
 
 /**
  * Formatar o número sempre em dois algarismo: '02', '07' ou '10'...
- * @param {number} unit 
+ * @param {number} unit
  * @returns a unidade como string
  */
  const formatTimeUnit = unit => unit < 10 ? `0${unit}` : `${unit}`
@@ -55,20 +55,16 @@ const formatDate = date => {
  */
 const generateDateWithBusinessDays = (date, amount) => {
     const weekDay = date.getDay()
-    // current date data
     const monthDay = date.getDate()
-    const mount = date.getMonth()
-    const year = date.getFullYear()
 
     const businessDay = monthDay + nextBusinessDay(weekDay)
-    const nextDate = new Date(year, mount, businessDay)
+    date.setDate(businessDay)
 
-    const nextDayOfMonth = nextDate.getDate()
-    const howManyDaysShouldIncrement = calculateDayToAdd(nextDate.getDay(), amount)
+    const nextDayOfMonth = date.getDate()
+    const howManyDaysShouldIncrement = calculateDayToAdd(date.getDay(), amount)
+    date.setDate(nextDayOfMonth + howManyDaysShouldIncrement)
 
-    const deadline = new Date(year, mount, nextDayOfMonth + howManyDaysShouldIncrement)
-
-    return formatDate(deadline)
+    return formatDate(date)
 }
 
 export {
