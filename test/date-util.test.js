@@ -112,4 +112,8 @@ describe('Formatar uma data', () => {
         const currentDate = new Date(2021, 7, 28)
         expect(formatDate(currentDate)).toBe('28/08/2021')
     })
+    test('Deve retornar a data formatada 06/09/2021', () => {
+        const currentDate = new Date('2021-9-6')
+        expect(formatDate(currentDate)).toBe('06/09/2021')
+    })
 })
